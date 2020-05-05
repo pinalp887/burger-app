@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import './main.scss'
-import Persons from './components/Persons/Persons'
 import { GlobalContextProvider, GlobalContext } from './context/GlobalContext'
 
 class App extends Component {
@@ -41,56 +40,23 @@ class App extends Component {
         })
     }
 
-    nameChangeHandler = (event, id) => {
-        const personIndex = this.state.persons.findIndex(p => {
-            return p.id === id;
-        })
-
-        console.log("Index of the person  " + personIndex)
-
-        const person = {
-            ...this.state.persons[personIndex]
-        }
-
-        person.name = event.target.value;
-        const persons = [...this.state.persons];
-        persons[personIndex] = person;
-
-        this.setState({
-            persons: persons
-        });
-    }
-
-    togglePersonHandler = () => {
-        const doesShow = this.state.showPersons;
-        this.setState({ showPersons: !doesShow })
-    }
-
-    deletePersonHandler = (index) => {
-        console.log(index)
-        // const persons = this.state.persons;
-        const persons = [...this.state.persons];
-        persons.splice(index, 1);
-        this.setState({ persons: persons });
-    }
-
     render() {
         return (
             <>
                 <div className='header'>
 
-                    <button className='button' onClick={this.togglePersonHandler}>Click Here !!</button>
+                    <button className='button' onClick={this.testconsolePrint}>Click Here !!</button>
                 </div>
                 {this.state.showPersons ? (
                     <GlobalContext.Consumer>
                         {globalContext => (
                             <>
-                                <Persons
+                                {/* <Persons
                                     context={globalContext}
                                     persons={this.state.persons}
                                     click={this.deletePersonHandler}
                                     changed={this.nameChangeHandler}
-                                />
+                                /> */}
                             </>
                         )}
                     </GlobalContext.Consumer>
